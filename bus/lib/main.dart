@@ -1,6 +1,9 @@
+import 'package:bus/newuserotp.dart';
 import 'package:bus/tester.dart';
 import 'package:flutter/material.dart';
-
+import 'signin.dart';
+import 'otpin.dart';
+import 'applicationStart.dart';
 void main() {
   runApp(Bus());
 }
@@ -26,9 +29,11 @@ class Homepage extends StatelessWidget
     String phone="";
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.green,
-        shadowColor: Colors.orange,
-        title:const Center(child:Text("School Bus",style: TextStyle(fontWeight:FontWeight.bold,color: Color.fromARGB(115, 251, 0, 255)),)),
+        backgroundColor: Color.fromARGB(255, 35, 50, 158),
+        elevation: 10,
+        shape:const RoundedRectangleBorder(borderRadius :BorderRadius.vertical(bottom:Radius.circular(20),),),
+        shadowColor:const Color.fromARGB(255, 249, 149, 0),
+        title:const Center(child:Text("School Bus",style: TextStyle(fontWeight:FontWeight.bold,color: Color.fromARGB(115, 0, 0, 0)),)),
       ),
       body: Padding(
         padding: const EdgeInsets.only(top:100,left :10,right :10),
@@ -46,10 +51,34 @@ class Homepage extends StatelessWidget
                   prefixIcon:Icon(Icons.phone),
                 ),
               ),
-              TextButton(onPressed:(){
+              const SizedBox(
+                height: 20,
+              ),
+              ElevatedButton(onPressed:(){
                 phone=_value.text;
                 print(checkinput(phone));
-              } , child: const Text("Print Button"))
+                if (isAlreadyRegisterd(phone))
+                {
+                  Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => otpin()),
+            );
+                }
+                else {
+                  print(" Your Mobile is not reistered, Register by going back");
+                }
+              } , child: const Text("GET OTP")),
+              const SizedBox(
+                height: 100,
+              ),
+              ElevatedButton(onPressed:(){
+                Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => signin()),
+            );
+
+              } ,child:const Text("If You are New User? Please click here"),),
+              
             ],
           ),
         ),
