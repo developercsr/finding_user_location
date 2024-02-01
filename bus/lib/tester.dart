@@ -16,9 +16,9 @@ dynamic checkinput(phone)
   }
 }
 
-double phonenumber()
+String phonenumber()
 {
-  return mobile;
+  return mobile.toString();
 }
 
 bool checkotp(otp)
@@ -48,7 +48,7 @@ bool isAlreadyRegisterd(phone)
 
 String emptyChecker(variable)
 {
-  if (variable.isEmpty){
+  if (variable.isNotEmpty){
     name=variable;
     return "is Empty";
   }
